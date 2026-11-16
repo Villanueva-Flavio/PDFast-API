@@ -21,7 +21,7 @@ RUN git clone --depth 1 --branch ${CROW_VERSION} https://github.com/CrowCpp/Crow
 WORKDIR /src
 COPY compile.sh main.cpp ./
 COPY src ./src
-RUN ./compile.sh
+RUN bash ./compile.sh
 
 # ---------- Runtime stage ----------
 FROM debian:bookworm-slim
