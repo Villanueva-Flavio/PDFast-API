@@ -1,27 +1,22 @@
-version: '3.8'
 services:
   server:
     container_name: pdfast_api_server
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    env_file: .env
+    environment:
+      REDIS_URL: tcp://redis:6379
     volumes:
-      - ./Mangas:/usr/src/app/Mangas
       - ./Media:/usr/src/app/Media
-
     ports:
       - "8003:8003"
-    command: ./app
     depends_on:
       - redis
     restart: always
 
   redis:
     container_name: pdfast_api_redis
-    image: redis:latest
+    image: redis:7-alpine
     restart: always
-    ports:
-      - "6379:6379"
     volumes:
       - redis_data:/data
 
